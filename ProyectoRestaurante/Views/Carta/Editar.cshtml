@@ -1,0 +1,41 @@
+﻿@model CartaCreacionViewModel
+@{
+    ViewData["Title"] = "Editar plato del menú";
+}
+<h1>Editar plato: @Model.nombre_plato</h1>
+<h5>Edita un nuevo plato</h5>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Editar">
+    <div class="mb-3" hidden>
+        <label asp-for="id" class="form-label">Nombre</label>
+        <input type="text" asp-for="id" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="nombre_plato" class="form-label">Nombre</label>
+        <input type="text" asp-for="nombre_plato" class="form-control" />
+        <span asp-validation-for="nombre_plato" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="tipo_plato" class="form-label">Tipo</label>
+        <select asp-for="tipo_plato" asp-items="Model.TiposPlatos" class="form-select"></select>
+        <span asp-validation-for="tipo_plato" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="precio_plato" class="form-label">Precio</label>
+        <input type="number" asp-for="precio_plato" class="form-control" />
+        <span asp-validation-for="precio_plato" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="descripcion" class="form-label">Descripción</label>
+        <input type="text" asp-for="descripcion" class="form-control" />
+        <span asp-validation-for="descripcion" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

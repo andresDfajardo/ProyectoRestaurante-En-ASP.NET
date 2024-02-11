@@ -1,0 +1,29 @@
+﻿@model DetallePedidosCreacionViewModel
+@{
+    ViewData["Title"] = "Crear Detalle del Pedido";
+}
+<form asp-action="Crear">
+    <div class="mb-3" hidden>
+        <label asp-for="id_detalle" class="form-label">Id</label>
+        <input type="text" asp-for="id_detalle" class="form-control" />
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="id_pedido" class="form-label">Id_Pedido</label>
+        <input type="text" asp-for="id_pedido" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="id_carta" class="form-label">Plato</label>
+        <select asp-for="id_carta" asp-items="Model.PlatoPedido" class="form-select"></select>
+        <span asp-validation-for="id_carta" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="cantidad" class="form-label">Cantidad</label>
+        <input type="text" asp-for="cantidad" class="form-control" />
+        <span asp-validation-for="cantidad" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a class="btn btn-danger" asp-controller="Pedidos" asp-action="Index">Finalizar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

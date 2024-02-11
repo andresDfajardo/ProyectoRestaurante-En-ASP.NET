@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TiposPlatos>
+@{
+    ViewData["Title"] = "Categorias de Platos";
+}
+<h1>Categorias de Platos</h1>
+<h5>Las categorías dentro del menú que existen en nuestro restaurante</h5>
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear Nueva Categoria</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tipoPlato in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id_categoria="@tipoPlato.id_categoria">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id_categoria="@tipoPlato.id_categoria">Borrar</a>
+                </td>
+                <td>
+                    @tipoPlato.categoria
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

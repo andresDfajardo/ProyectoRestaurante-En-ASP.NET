@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Carta>
+@{
+    ViewData["Title"] = "Carta";
+}
+<h1>Menú</h1>
+<h5>Los platos que ofrecemos</h5>
+<a asp-action="Crear" class="btn btn-primary mb-3">Crear nuevo plato</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Nombre del Plato</th>
+            <th>Categoria</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carta in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Editar" asp-route-id="@carta.id">Editar</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@carta.id">Borrar</a>
+                </td>
+                <td>
+                    @carta.nombre_plato
+                </td>
+                <td>
+                    @carta.tipoPlato
+                </td>
+                <td>
+                    @carta.precio_plato
+                </td>
+                <td>
+                    @carta.descripcion
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

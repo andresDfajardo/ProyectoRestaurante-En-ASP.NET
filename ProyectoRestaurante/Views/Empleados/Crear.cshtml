@@ -1,0 +1,82 @@
+﻿@model Empleados
+@{
+    ViewData["Title"] = "Crear un nuevo empleado";
+}
+
+<h1>Crear un nuevo empleado</h1>
+<h5>Registrar un nuevo empleado de nuestro restaurante</h5>
+<h6>Obligatorio*</h6>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Crear">
+    <div class="mb-3">
+        <label asp-for="tipodoc_empleado" class="form-label">Tipo de Documento*</label>
+        <select class="form-select" asp-for="tipodoc_empleado">
+            <option value="" selected>Elija una opción</option>
+            <option value="Cedula de Ciudadanía">Cedula de Ciudadanía</option>
+            <option value="Cedula de Extranjería">Cedula de Extranjería</option>
+            <option value="Pasaporte">Pasaporte</option>
+        </select>
+        <span asp-validation-for="tipodoc_empleado" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="doc_empleado" class="form-label">Numero de Documento*</label>
+        <input type="text" asp-for="doc_empleado" class="form-control" />
+        <span asp-validation-for="doc_empleado" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="cargo_empleado" class="form-label">Cargo*</label>
+        <select class="form-select" asp-for="cargo_empleado">
+            <option value="" selected>Elija una opción</option>
+            <option value="Mesero">Mesero</option>
+            <option value="Cajero">Cajero</option>
+            <option value="Cocinero">Cocinero</option>
+            <option value="Auxiliar de Cocina">Auxiliar de Cocina</option>
+        </select>
+        <span asp-validation-for="cargo_empleado" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="primer_nombre" class="form-label">Primer Nombre*</label>
+        <input type="text" asp-for="primer_nombre" class="form-control" />
+        <span asp-validation-for="primer_nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="segundo_nombre" class="form-label">Segundo Nombre (Opcional)</label>
+        <input type="text" asp-for="segundo_nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="primer_apellido" class="form-label">Primer Apellido*</label>
+        <input type="text" asp-for="primer_apellido" class="form-control" />
+        <span asp-validation-for="primer_apellido" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="segundo_apellido" class="form-label">Segundo Apellido (Opcional)</label>
+        <input type="text" asp-for="segundo_apellido" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="password" class="form-label">Contraseña*</label>
+        <input type="password" asp-for="password" class="form-control" />
+        <span asp-validation-for="password" class="text-danger"></span>
+        <small>
+            <input type="checkbox" id="ver" class="ver" onChange="hideOrShowPassword()" />
+            <label class="text">Mostrar contraseña</label>
+        </small>
+    </div>
+    <div class="mb-3">
+        <label asp-for="fecha_ingreso" class="form-label">Fecha de Ingreso*</label>
+        <input asp-for="fecha_ingreso" class="form-control" />
+        <span asp-validation-for="fecha_ingreso" class="text-danger"></span>
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="estado_empleado" class="form-label">Fecha de Ingreso*</label>
+        <input type="text" asp-for="estado_empleado" class="form-control" value="Activo"/>
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="fecha_egreso" class="form-label">Fecha de Egreso (Opcional)</label>
+        <input asp-for="fecha_egreso" class="form-control"/>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

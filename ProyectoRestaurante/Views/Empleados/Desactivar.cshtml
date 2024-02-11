@@ -1,0 +1,18 @@
+﻿@model Empleados
+@{
+    ViewData["Title"] = "Desactivar Empleado";
+}
+<h3 class="mb-3">¿Está seguro de desactivar al empleado: @Model.primer_nombre @Model.primer_apellido con @Model.tipodoc_empleado: @Model.doc_empleado?</h3>
+<form asp-action="DesactivarEmpleado">
+    <input type="hidden" asp-for="doc_empleado" />
+    <div class="mb-3" hidden>
+        <label asp-for="estado_empleado" class="form-label">Estado</label>
+        <input type="text" asp-for="estado_empleado" class="form-control" value="Inactivo" />
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="fecha_egreso" class="form-label">Fecha de Egreso (Opcional)</label>
+        <input type="date" id="fechaEgreso" asp-for="fecha_egreso" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-danger">Desactivar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

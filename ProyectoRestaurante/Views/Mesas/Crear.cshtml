@@ -1,0 +1,31 @@
+﻿@model Mesas
+@{
+    ViewData["Title"] = "Crear Mesa";
+}
+
+<h1>Crear Mesa</h1>
+<h5>Registra una nueva mesa</h5>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Crear">
+    <div class="mb-3" hidden>
+        <label asp-for="estado_mesa" class="form-label">Estado de la mesa</label>
+        <input type="text" asp-for="estado_mesa" class="form-control" value="Disponible" readonly/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="num_mesa" class="form-label">Numero de la mesa</label>
+        <input type="text" asp-for="num_mesa" class="form-control" />
+        <span asp-validation-for="num_mesa" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="capacidad_mesa" class="form-label">Capacidad de la mesa</label>
+        <input type="number" asp-for="capacidad_mesa" class="form-control" />
+        <span asp-validation-for="capacidad_mesa" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

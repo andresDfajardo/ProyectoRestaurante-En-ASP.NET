@@ -1,0 +1,37 @@
+﻿@model PedidosCreacionViewModel
+@{
+    ViewData["Title"] = "Crear Pedido";
+}
+<h1>Registrar un nuevo Pedido</h1>
+<h5>Registra un nuevo pedido</h5>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Crear">
+    <div class="mb-3" hidden>
+        <label asp-for="id_pedido" class="form-label">Id</label>
+        <input type="text" asp-for="id_pedido" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="mesa_pedido" class="form-label">Numero de Mesa</label>
+        <select asp-for="mesa_pedido" asp-items="Model.MesaPedido" class="form-select"></select>
+        <span asp-validation-for="mesa_pedido" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="mesero_pedido" class="form-label">Mesero</label>
+        <select asp-for="mesero_pedido" asp-items="Model.MeseroPedido" class="form-select"></select>
+        <span asp-validation-for="mesero_pedido" class="text-danger"></span>
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="estado_pedido" class="form-label">Estado del pedido</label>
+        <input type="text" asp-for="estado_pedido" class="form-control" value="Activo" />
+    </div>
+    <div class="mb-3" hidden>
+        <label asp-for="fecha_pedido" class="form-label">Fecha de Pedido</label>
+        <input asp-for="fecha_pedido" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Pedido</button>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

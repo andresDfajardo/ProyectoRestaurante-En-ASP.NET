@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DetallePedidosCreacionViewModel>
+@{
+
+}
+<h1>Esta es la informacion del pedido.</h1>
+<a asp-controller="Detalle" asp-action="CrearDetalleNuevo" class="btn btn-primary mb-3">Agregar plato</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Plato</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detalle in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id_detalle="@detalle.id_detalle">Borrar Plato</a>
+                </td>
+                <td>
+                    @detalle.id_carta
+                </td>
+                <td>
+                    @detalle.cantidad
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

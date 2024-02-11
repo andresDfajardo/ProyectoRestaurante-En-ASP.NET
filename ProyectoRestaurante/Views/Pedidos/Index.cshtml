@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Pedidos>
+@{
+    ViewData["Title"]="Pedidos";
+}
+<h1>Pedidos Activos</h1>
+<h5>Lista de los pedidos activos</h5>
+<a asp-action="Crear" class="btn btn-primary mb-3">Registrar nuevo pedido</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Numero de Mesa</th>
+            <th>Nombre Mesero</th>
+            <th>Estado del Pedido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Detalle" asp-action="Consultar" asp-route-id_pedido="@pedido.id_pedido">Consultar Pedido</a>
+                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id_pedido="@pedido.id_pedido">Finalizar Pedido</a>
+                </td>
+                <td>
+                    @pedido.mesa_pedido
+                </td>
+                <td>
+                    @pedido.mesero_pedido
+                </td>
+                <td>
+                    @pedido.estado_pedido
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

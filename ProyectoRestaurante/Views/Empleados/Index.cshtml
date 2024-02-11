@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Empleados>
+@{
+    ViewData["Title"] = "Empleados Activos";
+}
+<h1>Empleados</h1>
+<h5>Los empleados activos en nuestro restaurante</h5>
+<a asp-action="Crear" class="btn btn-primary mb-3">Registrar Nuevo Empleado</a>
+<a class="btn btn-secondary mb-3" asp-controller="Empleados" asp-action="TodosEmpleados">Todos los Empleados</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Tipo Documento</th>
+            <th>Documento</th>
+            <th>Cargo</th>
+            <th>Primer Nombre</th>
+            <th>Segundo Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Fecha Ingreso</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Empleado in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary mb-1" asp-action="Editar" asp-route-doc_empleado="@Empleado.doc_empleado">Editar</a>
+                    <a class="btn btn-danger mb-1" asp-action="Desactivar" asp-route-doc_empleado="@Empleado.doc_empleado">Desactivar</a>
+                </td>
+                <td>
+                    @Empleado.tipodoc_empleado
+                </td>
+                <td>
+                    @Empleado.doc_empleado
+                </td>
+                <td>
+                    @Empleado.cargo_empleado
+                </td>
+                <td>
+                    @Empleado.primer_nombre
+                </td>
+                <td>
+                    @Empleado.segundo_nombre
+                </td>
+                <td>
+                    @Empleado.primer_apellido
+                </td>
+                <td>
+                    @Empleado.segundo_apellido
+                </td>
+                <td>
+                    @Empleado.fecha_ingreso
+                </td>
+                <td>
+                    @Empleado.estado_empleado
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

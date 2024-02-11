@@ -1,0 +1,47 @@
+﻿@model Empleados
+@{
+    ViewData["Title"] = "Editar Empleado";
+}
+<h1>Editar la información del empleado con documento: @Model.doc_empleado</h1>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Editar">
+    <div class="mb-3" hidden >
+        <label asp-for="doc_empleado" class="form-label">Numero de Documento*</label>
+        <input type="text" asp-for="doc_empleado" class="form-control"/>
+        <span asp-validation-for="doc_empleado" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="cargo_empleado" class="form-label">Cargo*</label>
+        <select class="form-select" asp-for="cargo_empleado">
+            <option value="Mesero">Mesero</option>
+            <option value="Cajero">Cajero</option>
+            <option value="Cocinero">Cocinero</option>
+            <option value="Auxiliar de Cocina">Auxiliar de Cocina</option>
+        </select>
+        <span asp-validation-for="cargo_empleado" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="primer_nombre" class="form-label">Primer Nombre*</label>
+        <input type="text" asp-for="primer_nombre" class="form-control" />
+        <span asp-validation-for="primer_nombre" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="segundo_nombre" class="form-label">Segundo Nombre (Opcional)</label>
+        <input type="text" asp-for="segundo_nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="primer_apellido" class="form-label">Primer Apellido*</label>
+        <input type="text" asp-for="primer_apellido" class="form-control" />
+        <span asp-validation-for="primer_apellido" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="segundo_apellido" class="form-label">Segundo Apellido (Opcional)</label>
+        <input type="text" asp-for="segundo_apellido" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Editar</button>
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,19 @@
+﻿@model TiposPlatos
+@{
+    ViewData["Title"] = "Crear Tipos de Platos";
+}
+<h1>Crear un tipo de plato</h1>
+<h5>Registra un nuevo tipo de plato. Ejemplo: Entradas, Bebidas, etc</h5>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Crear">
+    <div class="mb-3">
+        <label asp-for="categoria" class="form-label">Nombre de la Categoria</label>
+        <input type="text" asp-for="categoria" class="form-control" />
+        <span asp-validation-for="categoria" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

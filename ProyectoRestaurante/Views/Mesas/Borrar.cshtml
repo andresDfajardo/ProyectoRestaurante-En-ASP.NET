@@ -1,0 +1,10 @@
+﻿@model Mesas
+@{
+    ViewData["Title"] = "Borrar Mesa";
+}
+<h3 class="mb-3">¿Está seguro de eliminar la mesa: @Model.num_mesa?</h3>
+<form asp-action="BorrarMesa">
+    <input type="hidden" asp-for="id_mesa"/>
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>
