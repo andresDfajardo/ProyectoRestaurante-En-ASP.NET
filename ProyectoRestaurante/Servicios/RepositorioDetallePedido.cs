@@ -26,12 +26,13 @@ namespace ProyectoRestaurante.Servicios
         public async Task<DetallePedidos> ObtenerPlatos(int id_pedido)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryFirstOrDefaultAsync<DetallePedidos>(@"SELECT c.nombre_plato, cantidad
+            return await connection.QueryFirstOrDefaultAsync<DetallePedidos>(@"SELECT c.nombre_plato as NombrePlato, cantidad
                                                                             FROM DetallePedido
                                                                             JOIN Carta as c
                                                                             ON DetallePedido.id_carta = c.id
                                                                             WHERE id_pedido = @id_pedido", new {id_pedido});
         }
+        
 
     }
 }

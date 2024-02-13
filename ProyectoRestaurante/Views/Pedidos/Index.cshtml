@@ -9,8 +9,9 @@
     <thead>
         <tr>
             <th>Acciones</th>
+            <th>Id Pedido</th>
             <th>Numero de Mesa</th>
-            <th>Nombre Mesero</th>
+            <th>Mesero</th>
             <th>Estado del Pedido</th>
         </tr>
     </thead>
@@ -20,7 +21,10 @@
             <tr>
                 <td>
                     <a class="btn btn-primary" asp-controller="Detalle" asp-action="Consultar" asp-route-id_pedido="@pedido.id_pedido">Consultar Pedido</a>
-                    <a class="btn btn-danger" asp-action="Borrar" asp-route-id_pedido="@pedido.id_pedido">Finalizar Pedido</a>
+                    <a class="btn btn-danger" asp-action="Finalizar" asp-route-id_pedido="@pedido.id_pedido">Finalizar Pedido</a>
+                </td>
+                <td>
+                    @pedido.id_pedido
                 </td>
                 <td>
                     @pedido.mesa_pedido

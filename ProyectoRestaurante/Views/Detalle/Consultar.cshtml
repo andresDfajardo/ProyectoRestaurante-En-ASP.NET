@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<DetallePedidosCreacionViewModel>
 @{
-
+    ViewData["Title"] = "Detalles del pedido";
 }
 <h1>Esta es la informacion del pedido.</h1>
 <a asp-controller="Detalle" asp-action="CrearDetalleNuevo" class="btn btn-primary mb-3">Agregar plato</a>
@@ -21,13 +21,12 @@
                     <a class="btn btn-danger" asp-action="Borrar" asp-route-id_detalle="@detalle.id_detalle">Borrar Plato</a>
                 </td>
                 <td>
-                    @detalle.id_carta
+                    @detalle.NombrePlato
                 </td>
                 <td>
                     @detalle.cantidad
                 </td>
                 <td>
-                    
                 </td>
             </tr>
         }

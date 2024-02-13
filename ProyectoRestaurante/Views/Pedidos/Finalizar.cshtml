@@ -1,0 +1,10 @@
+﻿@model Pedidos
+@{
+    ViewData["Title"] = "Finalizar Pedido";
+}
+<h3 class="mb-3">¿Estas seguro de finalizar el pedido @Model.id_pedido?</h3>
+<form asp-action="FinalizarPedido">
+    <input type="hidden" asp-for="id_pedido"/>
+    <button type="submit" class="btn btn-danger">Finalizar</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+</form>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using ProyectoRestaurante.Models;
 using ProyectoRestaurante.Servicios;
 using System.Reflection;
@@ -67,6 +68,28 @@ namespace ProyectoRestaurante.Controllers
             var mesero = await repositorioEmpleados.Obtener();
             return mesero.Select(x => new SelectListItem(x.primer_nombre+" "+x.primer_apellido+" - "+x.doc_empleado,x.id_empleado.ToString()));
 
+        }
+
+        [HttpGet]
+        public async Task <ActionResult> Finalizar (int id_pedido)
+        {
+            var pedido = await repositorioPedidos.ObtenerporId(id_pedido);
+            if(pedido is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(pedido);
+        }
+        [HttpPost]
+        public async Task<IActionResult>FinalizarPedido(Pedidos pedidos)
+        {
+            var pedidoExiste = await repositorioPedidos.ObtenerporId(pedidos.id_pedido);
+            if (pedidoExiste is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            await repositorioPedidos.Finalizar(pedidos);
+            return RedirectToAction("Index");
         }
 
     }

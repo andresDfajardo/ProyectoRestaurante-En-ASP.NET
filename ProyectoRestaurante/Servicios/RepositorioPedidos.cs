@@ -7,7 +7,9 @@ namespace ProyectoRestaurante.Servicios
     public interface IRepositorioPedidos
     {
         Task CrearPedido(Pedidos pedidos);
+        Task Finalizar(Pedidos pedidos);
         Task<IEnumerable<Pedidos>> ObtenerActivos();
+        Task<Pedidos> ObtenerporId(int id_pedido);
     }
     public class RepositorioPedidos:IRepositorioPedidos
     {
@@ -26,13 +28,27 @@ namespace ProyectoRestaurante.Servicios
         public async Task<IEnumerable<Pedidos>> ObtenerActivos()
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Pedidos>(@"SELECT Mesas.num_mesa as mesa_pedido, Empleados.doc_empleado as mesero_pedido, estado_pedido
+            return await connection.QueryAsync<Pedidos>(@"SELECT id_pedido,Mesas.num_mesa as mesa_pedido, Empleados.doc_empleado as mesero_pedido, estado_pedido
                                                         FROM Pedidos
                                                         JOIN Mesas
                                                         ON Pedidos.mesa_pedido = Mesas.id_mesa
                                                         JOIN Empleados
                                                         ON Pedidos.mesero_pedido = Empleados.id_empleado
                                                         WHERE estado_pedido = 'Activo'");
+        }
+        public async Task Finalizar(Pedidos pedidos)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync(@"UPDATE Pedidos
+                                            SET estado_pedido='Finalizado'
+                                            WHERE id_pedido = @id_pedido", pedidos);
+        }
+        public async Task<Pedidos> ObtenerporId(int id_pedido)
+        {
+            using var connection = new SqlConnection(connectionString);
+            return await connection.QueryFirstOrDefaultAsync<Pedidos>(@"SELECT id_pedido,mesa_pedido,mesero_pedido,estado_pedido,fecha_pedido
+                                                                        FROM Pedidos
+                                                                        WHERE id_pedido = @id_pedido", new { id_pedido });
         }
     }
 }

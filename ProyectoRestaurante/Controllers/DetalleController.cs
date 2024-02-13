@@ -57,9 +57,9 @@ namespace ProyectoRestaurante.Controllers
 
         }
         [HttpGet]
-        public async Task<ActionResult> Consultar(int id_pedido)
+        public async Task<ActionResult> Consultar(DetallePedidosCreacionViewModel detal)
         {
-            var detalles = await repositorioDetallePedido.ObtenerPlatos(id_pedido);
+            var detalles = await repositorioDetallePedido.ObtenerPlatos(detal.id_pedido);
             if (detalles is null)
             {
                 return RedirectToAction("NoEncontrado", "Home");

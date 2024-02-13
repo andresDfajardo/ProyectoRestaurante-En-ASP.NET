@@ -115,7 +115,7 @@ namespace ProyectoRestaurante.Controllers
                 if (ex.InnerException is SqlException sqlException && (sqlException.Number == 547 || sqlException.Number == 2601))
                 {
                     // Manejar error de clave externa
-                    ModelState.AddModelError(string.Empty, "No se puede eliminar este registro debido a que tiene transcacciones.");
+                    ModelState.AddModelError(string.Empty, "No se puede eliminar este registro debido a que tiene transacciones.");
                     return View(carta); // o redirigir a una vista con un mensaje de error
                 }
                 return RedirectToAction("Index");
