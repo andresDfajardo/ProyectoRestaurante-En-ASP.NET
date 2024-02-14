@@ -7,9 +7,9 @@ namespace ProyectoRestaurante.Servicios
     public interface IRepositorioDetallePedido
     {
         Task CrearDetalle(DetallePedidos detallePedidos);
-        Task<DetallePedidos> ObtenerPlatos(int id_pedido);
+        Task<IEnumerable<DetallePedidosCreacionViewModel>> ObtenerPlatos(int id_pedido);
     }
-    public class RepositorioDetallePedido:IRepositorioDetallePedido
+    public class RepositorioDetallePedido : IRepositorioDetallePedido
     {
         private readonly string connectionString;
         public RepositorioDetallePedido(IConfiguration configuration)
@@ -23,14 +23,15 @@ namespace ProyectoRestaurante.Servicios
                 commandType: System.Data.CommandType.StoredProcedure);
             detallePedidos.id_detalle = id;
         }
-        public async Task<DetallePedidos> ObtenerPlatos(int id_pedido)
+        public async Task<IEnumerable<DetallePedidosCreacionViewModel>> ObtenerPlatos(int id_pedido)
         {
-            using var connection = new SqlConnection(connectionString);
-            return await connection.QueryFirstOrDefaultAsync<DetallePedidos>(@"SELECT c.nombre_plato as NombrePlato, cantidad
-                                                                            FROM DetallePedido
+                using var connection = new SqlConnection(connectionString);
+                return await connection.QueryAsync<DetallePedidosCreacionViewModel>(@"SELECT dp.id_pedido,c.nombre_plato as NombrePlato, sum(dp.cantidad) as cantidad, sum(dp.cantidad * c.precio_plato) as Subtotal
+                                                                            FROM DetallePedido dp
                                                                             JOIN Carta as c
-                                                                            ON DetallePedido.id_carta = c.id
-                                                                            WHERE id_pedido = @id_pedido", new {id_pedido});
+                                                                            ON dp.id_carta = c.id
+                                                                            WHERE dp.id_pedido = @id_pedido
+                                                                            GROUP BY c.nombre_plato", new { id_pedido });
         }
         
 

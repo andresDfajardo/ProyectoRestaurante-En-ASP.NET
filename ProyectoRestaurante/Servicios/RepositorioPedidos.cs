@@ -39,9 +39,7 @@ namespace ProyectoRestaurante.Servicios
         public async Task Finalizar(Pedidos pedidos)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync(@"UPDATE Pedidos
-                                            SET estado_pedido='Finalizado'
-                                            WHERE id_pedido = @id_pedido", pedidos);
+            await connection.ExecuteAsync(@"Finalizar_Pedido", new {pedidos.id_pedido}, commandType: System.Data.CommandType.StoredProcedure);
         }
         public async Task<Pedidos> ObtenerporId(int id_pedido)
         {

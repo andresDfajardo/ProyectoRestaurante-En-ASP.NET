@@ -6,5 +6,6 @@ namespace ProyectoRestaurante.Models
     {
         public IEnumerable<SelectListItem> PlatoPedido { get; set; }
         public string NombrePlato { get; set; }
+        public int Subtotal { get; set; }
     }
 }
