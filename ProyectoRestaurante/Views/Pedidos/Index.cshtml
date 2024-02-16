@@ -13,6 +13,7 @@
             <th>Numero de Mesa</th>
             <th>Mesero</th>
             <th>Estado del Pedido</th>
+            <th>Valor Final</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,9 @@
                 </td>
                 <td>
                     @pedido.estado_pedido
+                </td>
+                <td>
+                    $@pedido.TotalPedido
                 </td>
             </tr>
         }

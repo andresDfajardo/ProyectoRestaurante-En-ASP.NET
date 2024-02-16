@@ -10,5 +10,6 @@ namespace ProyectoRestaurante.Models
         public string estado_pedido { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime fecha_pedido { get; set; } = DateTime.Now;
+        public int TotalPedido { get; set; }
     }
 }

@@ -28,13 +28,7 @@ namespace ProyectoRestaurante.Servicios
         public async Task<IEnumerable<Pedidos>> ObtenerActivos()
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Pedidos>(@"SELECT id_pedido,Mesas.num_mesa as mesa_pedido, Empleados.doc_empleado as mesero_pedido, estado_pedido
-                                                        FROM Pedidos
-                                                        JOIN Mesas
-                                                        ON Pedidos.mesa_pedido = Mesas.id_mesa
-                                                        JOIN Empleados
-                                                        ON Pedidos.mesero_pedido = Empleados.id_empleado
-                                                        WHERE estado_pedido = 'Activo'");
+            return await connection.QueryAsync<Pedidos>(@"ObtenerPedidosActivos");
         }
         public async Task Finalizar(Pedidos pedidos)
         {

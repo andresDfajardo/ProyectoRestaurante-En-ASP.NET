@@ -66,5 +66,26 @@ namespace ProyectoRestaurante.Controllers
             }
             return View(detalles);
         }
+        [HttpGet]
+        public async Task<IActionResult>Borrar(int id_detalle)
+        {
+            var detalle = await repositorioDetallePedido.ObtenerporId(id_detalle);
+            if(detalle is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            return View(detalle);
+        }
+        [HttpPost]
+        public async Task<IActionResult> BorrarDetalle(int id_detalle)
+        {
+            var detalle = await repositorioDetallePedido.ObtenerporId(id_detalle);
+            if (detalle is null)
+            {
+                return RedirectToAction("NoEncontrado", "Home");
+            }
+            await repositorioDetallePedido.Borrar(id_detalle);
+            return RedirectToAction("Consultar");
+        }
     }
 }

@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>Acciones</th>
+            <th>serial</th>
             <th>Plato</th>
             <th>Cantidad</th>
             <th>Subtotal</th>
@@ -19,6 +20,9 @@
             <tr>
                 <td>
                     <a class="btn btn-danger" asp-action="Borrar" asp-route-id_detalle="@detalle.id_detalle">Borrar Plato</a>
+                </td>
+                <td>
+                    @detalle.id_detalle
                 </td>
                 <td>
                     @detalle.NombrePlato
@@ -33,3 +37,4 @@
         }
     </tbody>
 </table>
+<a class="btn btn-danger" asp-controller="Pedidos" asp-action="Index">Volver</a>
